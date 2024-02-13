@@ -12,12 +12,14 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from '@/components/ui/carousel';
+import { ModeToggle } from './components/mode-toggle';
 
 function App() {
 	const [count, setCount] = useState(0);
 
 	return (
 		<>
+      <ModeToggle />
 			<div>
 				<a
 					href='https://vitejs.dev'
@@ -53,47 +55,51 @@ function App() {
 				Click on the Vite and React logos to learn more
 			</p>
 
-			<Button>Click me</Button>
+			<div>
+				<Button>Click me</Button>
+			</div>
+			<div>
+				<Alert>
+					<Terminal className='h-4 w-4' />
+					<AlertTitle>Heads up!</AlertTitle>
+					<AlertDescription>
+						You can add components and dependencies to your app using the cli.
+					</AlertDescription>
+				</Alert>
+			</div>
 
-			<Alert>
-				<Terminal className='h-4 w-4' />
-				<AlertTitle>Heads up!</AlertTitle>
-				<AlertDescription>
-					You can add components and dependencies to your app using the cli.
-				</AlertDescription>
-			</Alert>
-
-			<Carousel>
-				<CarouselContent>
-					<CarouselItem>
-            <img
-              src='https://via.placeholder.com/300'
-              alt='placeholder'
-            />
-          </CarouselItem>
-					<CarouselItem>
-            <img
-              src='https://via.placeholder.com/300'
-              alt='placeholder'
-            />
-          </CarouselItem>
-					<CarouselItem>
-            <img
-              src='https://via.placeholder.com/300'
-              alt='placeholder'
-            />
-          </CarouselItem>
-					<CarouselItem>
-            <img
-              src='https://via.placeholder.com/300'
-              alt='placeholder'
-            />
-          </CarouselItem>
-					
-				</CarouselContent>
-				<CarouselPrevious />
-				<CarouselNext />
-			</Carousel>
+			<div className='w-5/6 m-auto'>
+				<Carousel>
+					<CarouselContent>
+						<CarouselItem className='basis-1/3'>
+							<img
+								src='https://via.placeholder.com/300'
+								alt='placeholder'
+							/>
+						</CarouselItem>
+						<CarouselItem className='basis-1/3'>
+							<img
+								src='https://via.placeholder.com/300'
+								alt='placeholder'
+							/>
+						</CarouselItem>
+						<CarouselItem className='basis-1/3'>
+							<img
+								src='https://via.placeholder.com/300'
+								alt='placeholder'
+							/>
+						</CarouselItem>
+						<CarouselItem className='basis-1/3'>
+							<img
+								src='https://via.placeholder.com/300'
+								alt='placeholder'
+							/>
+						</CarouselItem>
+					</CarouselContent>
+					<CarouselPrevious />
+					<CarouselNext />
+				</Carousel>
+			</div>
 		</>
 	);
 }
