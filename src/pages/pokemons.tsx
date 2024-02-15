@@ -4,13 +4,18 @@ import { useQuery } from 'react-query';
 import CardPokemon from '../components/cardPokemon';
 import { Link } from 'react-router-dom';
 import { Pokemon } from '@/types';
-import { Pagination } from '@/components/ui/pagination';
+import {
+	Pagination,
+	PaginationContent,
+	PaginationEllipsis,
+	PaginationItem,
+	PaginationLink,
+	PaginationNext,
+	PaginationPrevious,
+} from '@/components/ui/pagination';
 
-
-
-const Pokemons  = () => {
+const Pokemons = () => {
 	const { data, isLoading, isError } = useQuery('pokemons', getPokemons);
-
 
 	return (
 		<>
@@ -38,8 +43,23 @@ const Pokemons  = () => {
 							/>
 						</Link>
 					))
-					)}
-					<Pagination />
+				)}
+				<Pagination>
+					<PaginationContent>
+						<PaginationItem>
+							<PaginationPrevious href='#' />
+						</PaginationItem>
+						<PaginationItem>
+							<PaginationLink href='#'>1</PaginationLink>
+						</PaginationItem>
+						<PaginationItem>
+							<PaginationEllipsis />
+						</PaginationItem>
+						<PaginationItem>
+							<PaginationNext href='#' />
+						</PaginationItem>
+					</PaginationContent>
+				</Pagination>
 			</div>
 		</>
 	);
