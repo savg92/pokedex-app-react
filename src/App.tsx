@@ -1,15 +1,14 @@
 import './App.css';
 
 import { Outlet } from 'react-router-dom';
-import { ModeToggle } from './components/mode-toggle';
+
+import Header from './components/header';
 
 function App() {
 
 	return (
 		<>
-			<header>
-				<ModeToggle />
-			</header>
+			<Header />
 			<main className='flex flex-col items-center'>
 				<Outlet />
 			</main>

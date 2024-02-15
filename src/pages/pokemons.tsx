@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import CardPokemon from '../components/cardPokemon';
 import { Link } from 'react-router-dom';
 import { Pokemon } from '@/types';
+import { Pagination } from '@/components/ui/pagination';
 
 
 
@@ -37,7 +38,8 @@ const Pokemons  = () => {
 							/>
 						</Link>
 					))
-				)}
+					)}
+					<Pagination />
 			</div>
 		</>
 	);
