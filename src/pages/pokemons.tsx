@@ -1,5 +1,6 @@
 import { getPokemons } from '@/services/pokemonApi';
 import { useQuery } from 'react-query';
+import { usePagination } from '@mantine/hooks';
 
 import CardPokemon from '../components/cardPokemon';
 import { Link } from 'react-router-dom';
@@ -16,6 +17,8 @@ import {
 
 const Pokemons = () => {
 	const { data, isLoading, isError } = useQuery('pokemons', getPokemons);
+
+	const pagination = usePagination({ total: 10, initialPage: 1 });
 
 	return (
 		<>
