@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { usePagination } from '@mantine/hooks';
 
 import CardPokemon from '../components/cardPokemon';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Pokemon } from '@/types';
 import {
 	Pagination,
@@ -19,32 +19,43 @@ import {
 import { useEffect, useState } from 'react';
 
 const Pokemons = () => {
+	const location = useLocation();
+	const navigate = useNavigate();
 	const { data, isLoading, isError } = useQuery('pokemons', getPokemons);
 
 	const itemsPerPage = 10;
-	const total = Math.ceil(data?.length / itemsPerPage);
+	const total =  (data) ? Math.ceil(data.length / itemsPerPage) : 0;
+
+	const searchParams = new URLSearchParams(location.search);
+	const pageParam = searchParams.get('page');
+	const initialPage = parseInt(pageParam ? pageParam : '1') || 1;
+
+	const start = (initialPage - 1) * itemsPerPage;
+	const end = start + itemsPerPage;
 
 	const [visibleItems, setVisibleItems] = useState(
-		data?.slice(0, itemsPerPage) || []
+		data?.slice(start, end) || []
 	);
 
 	useEffect(() => {
-		setVisibleItems(data?.slice(0, itemsPerPage) || []);
-	}, [data]);
+		setVisibleItems(data?.slice(start, end) || []);
+	}, [data, start, end]);
 
 	const pagination = usePagination({
 		total,
-		initialPage: 1,
+		initialPage,
 		onChange: (page) => {
 			const start = (page - 1) * itemsPerPage;
 			const end = start + itemsPerPage;
 			setVisibleItems(data?.slice(start, end) || []);
-		},
-		
-	});
 
-	console.log(pagination);
-	console.log(typeof (pagination.active).toString());
+			searchParams.set('page', page.toString());
+			navigate({
+				pathname: location.pathname,
+				search: searchParams.toString(),
+			});
+		},
+	});
 
 	return (
 		<>
@@ -79,15 +90,15 @@ const Pokemons = () => {
 				<PaginationContent>
 					<PaginationItem>
 						<PaginationFirst
-						onClick={pagination.first}
-						href={`#${pagination.active}`}
+							onClick={pagination.first}
+							href={`#search=${pagination.active}`}
 						>
 							&lt;&lt;
 						</PaginationFirst>
 					</PaginationItem>
 					<PaginationItem>
 						<PaginationPrevious
-							href={`#${pagination.active}`}
+							href={`#search=${pagination.active}`}
 							onClick={pagination.previous}
 						/>
 					</PaginationItem>
@@ -99,7 +110,7 @@ const Pokemons = () => {
 						) : (
 							<PaginationItem key={index}>
 								<PaginationLink
-									href={`#${page}`}
+									href={`#search=${page}`}
 									onClick={() => pagination.setPage(page)}
 									isActive={pagination.active === page}
 								>
@@ -110,20 +121,18 @@ const Pokemons = () => {
 					)}
 					<PaginationItem>
 						<PaginationNext
-							href={`#${pagination.active}`}
+							href={`#search=${pagination.active}`}
 							onClick={pagination.next}
 						/>
 					</PaginationItem>
 					<PaginationItem>
 						<PaginationLast
+							href={`#search=${pagination.active}`}
 							onClick={pagination.last}
-							href={`#${pagination.active}`}
 						/>
 					</PaginationItem>
 				</PaginationContent>
 			</Pagination>
-
-
 		</>
 	);
 };
