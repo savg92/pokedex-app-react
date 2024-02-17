@@ -9,7 +9,9 @@ import {
 	Pagination,
 	PaginationContent,
 	PaginationEllipsis,
+	PaginationFirst,
 	PaginationItem,
+	PaginationLast,
 	PaginationLink,
 	PaginationNext,
 	PaginationPrevious,
@@ -74,9 +76,17 @@ const Pokemons = () => {
 			<Pagination>
 				<PaginationContent>
 					<PaginationItem>
+						<PaginationFirst
+						onClick={pagination.first}
+						href='#'
+						>
+							&lt;&lt;
+						</PaginationFirst>
+					</PaginationItem>
+					<PaginationItem>
 						<PaginationPrevious
 							href='#'
-							onClick={() => setPage(currentPage - 1)}
+							onClick={pagination.previous}
 						/>
 					</PaginationItem>
 					{pagination.range.map((page: number | 'dots', index: number) =>
@@ -87,33 +97,33 @@ const Pokemons = () => {
 						) : (
 							<PaginationItem key={index}>
 								<PaginationLink
-									href='#'
+									href={`#${page}`}
 									onClick={() => setPage(page)}
+									isActive={page === currentPage}
 								>
 									{page}
 								</PaginationLink>
 							</PaginationItem>
 						)
 					)}
+					<PaginationItem>
+						<PaginationNext
+							href='#'
+							onClick={pagination.next}
+						/>
+					</PaginationItem>
+					<PaginationItem>
+						<PaginationLast
+							onClick={pagination.last}
+							href='#'
+						>
+							&gt;&gt;
+						</PaginationLast>
+					</PaginationItem>
 				</PaginationContent>
 			</Pagination>
 
-			<Pagination>
-				<PaginationContent>
-					<PaginationItem>
-						<PaginationPrevious href='#' />
-					</PaginationItem>
-					<PaginationItem>
-						<PaginationLink href='#'>1</PaginationLink>
-					</PaginationItem>
-					<PaginationItem>
-						<PaginationEllipsis />
-					</PaginationItem>
-					<PaginationItem>
-						<PaginationNext href='#' />
-					</PaginationItem>
-				</PaginationContent>
-			</Pagination>
+
 		</>
 	);
 };

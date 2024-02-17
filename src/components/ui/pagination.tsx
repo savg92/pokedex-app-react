@@ -106,6 +106,40 @@ const PaginationEllipsis = ({
 )
 PaginationEllipsis.displayName = "PaginationEllipsis"
 
+const PaginationFirst = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof PaginationLink>) => (
+  <PaginationLink
+    aria-label="Go to first page"
+    size="default"
+    className={cn("gap-1 pl-2.5", className)}
+    {...props}
+  >
+    <span>
+      &lt;&lt;
+    </span>
+  </PaginationLink>
+)
+PaginationFirst.displayName = "PaginationFirst"
+
+const PaginationLast = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof PaginationLink>) => (
+  <PaginationLink
+    aria-label="Go to last page"
+    size="default"
+    className={cn("gap-1 pr-2.5", className)}
+    {...props}
+  >
+    <span>
+      &gt;&gt;
+    </span>
+  </PaginationLink>
+)
+PaginationLast.displayName = "PaginationLast"
+
 export {
   Pagination,
   PaginationContent,
@@ -114,4 +148,6 @@ export {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
+  PaginationFirst,
+  PaginationLast,
 }
