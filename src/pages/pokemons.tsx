@@ -98,8 +98,8 @@ const Pokemons = () => {
 							<PaginationItem key={index}>
 								<PaginationLink
 									href={`#${page}`}
-									onClick={() => setPage(page)}
-									isActive={page === currentPage}
+									onClick={() => pagination.setPage(page)}
+									isActive={pagination.active === page}
 								>
 									{page}
 								</PaginationLink>
