@@ -42,7 +42,9 @@ const Pokemons = () => {
 		},
 		
 	});
-	const { currentPage, setPage } = pagination;
+
+	console.log(pagination);
+	console.log(typeof (pagination.active).toString());
 
 	return (
 		<>
@@ -78,14 +80,14 @@ const Pokemons = () => {
 					<PaginationItem>
 						<PaginationFirst
 						onClick={pagination.first}
-						href='#'
+						href={`#${pagination.active}`}
 						>
 							&lt;&lt;
 						</PaginationFirst>
 					</PaginationItem>
 					<PaginationItem>
 						<PaginationPrevious
-							href='#'
+							href={`#${pagination.active}`}
 							onClick={pagination.previous}
 						/>
 					</PaginationItem>
@@ -108,17 +110,15 @@ const Pokemons = () => {
 					)}
 					<PaginationItem>
 						<PaginationNext
-							href='#'
+							href={`#${pagination.active}`}
 							onClick={pagination.next}
 						/>
 					</PaginationItem>
 					<PaginationItem>
 						<PaginationLast
 							onClick={pagination.last}
-							href='#'
-						>
-							&gt;&gt;
-						</PaginationLast>
+							href={`#${pagination.active}`}
+						/>
 					</PaginationItem>
 				</PaginationContent>
 			</Pagination>
