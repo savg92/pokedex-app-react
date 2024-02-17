@@ -23,7 +23,7 @@ const Pokemons = () => {
 	const navigate = useNavigate();
 	const { data, isLoading, isError } = useQuery('pokemons', getPokemons);
 
-	const itemsPerPage = 10;
+	const itemsPerPage = 20;
 	const total =  (data) ? Math.ceil(data.length / itemsPerPage) : 0;
 
 	const searchParams = new URLSearchParams(location.search);
@@ -59,7 +59,7 @@ const Pokemons = () => {
 
 	return (
 		<>
-			<div className='w-5/6 m-auto p-4 flex flex-wrap justify-between gap-4'>
+			<div className='w-5/6 m-auto p-4 flex flex-wrap justify-center gap-4'>
 				{isLoading ? (
 					<CardPokemon
 						id={0}
