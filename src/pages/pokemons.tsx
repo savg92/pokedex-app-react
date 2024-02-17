@@ -14,11 +14,33 @@ import {
 	PaginationNext,
 	PaginationPrevious,
 } from '@/components/ui/pagination';
+import { useEffect, useState } from 'react';
 
 const Pokemons = () => {
 	const { data, isLoading, isError } = useQuery('pokemons', getPokemons);
 
-	const pagination = usePagination({ total: 10, initialPage: 1 });
+	const itemsPerPage = 10;
+	const total = Math.ceil(data?.length / itemsPerPage);
+
+	const [visibleItems, setVisibleItems] = useState(
+		data?.slice(0, itemsPerPage) || []
+	);
+
+	useEffect(() => {
+		setVisibleItems(data?.slice(0, itemsPerPage) || []);
+	}, [data]);
+
+	const pagination = usePagination({
+		total,
+		initialPage: 1,
+		onChange: (page) => {
+			const start = (page - 1) * itemsPerPage;
+			const end = start + itemsPerPage;
+			setVisibleItems(data?.slice(start, end) || []);
+		},
+		
+	});
+	const { currentPage, setPage } = pagination;
 
 	return (
 		<>
@@ -33,7 +55,7 @@ const Pokemons = () => {
 				) : isError ? (
 					<div>Error</div>
 				) : (
-					data?.map((pokemon: Pokemon) => (
+					visibleItems?.map((pokemon: Pokemon) => (
 						<Link
 							to={`/pokemon/${pokemon.name}`}
 							key={pokemon.id}
@@ -47,23 +69,51 @@ const Pokemons = () => {
 						</Link>
 					))
 				)}
-				<Pagination>
-					<PaginationContent>
-						<PaginationItem>
-							<PaginationPrevious href='#' />
-						</PaginationItem>
-						<PaginationItem>
-							<PaginationLink href='#'>1</PaginationLink>
-						</PaginationItem>
-						<PaginationItem>
-							<PaginationEllipsis />
-						</PaginationItem>
-						<PaginationItem>
-							<PaginationNext href='#' />
-						</PaginationItem>
-					</PaginationContent>
-				</Pagination>
 			</div>
+
+			<Pagination>
+				<PaginationContent>
+					<PaginationItem>
+						<PaginationPrevious
+							href='#'
+							onClick={() => setPage(currentPage - 1)}
+						/>
+					</PaginationItem>
+					{pagination.range.map((page: number | 'dots', index: number) =>
+						page === 'dots' ? (
+							<PaginationItem key={index}>
+								<PaginationEllipsis />
+							</PaginationItem>
+						) : (
+							<PaginationItem key={index}>
+								<PaginationLink
+									href='#'
+									onClick={() => setPage(page)}
+								>
+									{page}
+								</PaginationLink>
+							</PaginationItem>
+						)
+					)}
+				</PaginationContent>
+			</Pagination>
+
+			<Pagination>
+				<PaginationContent>
+					<PaginationItem>
+						<PaginationPrevious href='#' />
+					</PaginationItem>
+					<PaginationItem>
+						<PaginationLink href='#'>1</PaginationLink>
+					</PaginationItem>
+					<PaginationItem>
+						<PaginationEllipsis />
+					</PaginationItem>
+					<PaginationItem>
+						<PaginationNext href='#' />
+					</PaginationItem>
+				</PaginationContent>
+			</Pagination>
 		</>
 	);
 };
