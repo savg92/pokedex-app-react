@@ -8,7 +8,7 @@ interface PokemonDetailProps {
 
 const PokemonDetail: React.FC<PokemonDetailProps> = ({ data }) => {
 	return (
-		<CardDescription className='flex flex-col gap-6 border-l-2 justify-start pl-12'>
+		<CardDescription className='flex flex-col gap-6 md:border-l-2 justify-start md:pl-12'>
 			<h2 className='text-xl underline font-bold'>Details</h2>
 			<p>
 				<span className='font-bold'>Height: </span>
