@@ -17,7 +17,12 @@ const Pokemons = () => {
 		getPokemons(151, 0)
 	);
 
-	const itemsPerPage = 20;
+	useEffect(() => {
+		document.title =
+			'Pokedéx'
+	}, [data]);
+
+	const itemsPerPage = 10;
 	const total = data ? Math.ceil(data.length / itemsPerPage) : 0;
 
 	const searchParams = new URLSearchParams(location.search);
