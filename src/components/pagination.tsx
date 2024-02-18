@@ -29,7 +29,7 @@ const PaginationComponent = ({
 }) => {
 	return (
 		<Pagination>
-			<PaginationContent>
+			<PaginationContent className='flex justify-center items-center gap-4 flex-wrap'>
 				<PaginationItem>
 					<PaginationFirst
 						onClick={first}
