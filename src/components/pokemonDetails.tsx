@@ -117,7 +117,7 @@ const PokemonDetails = () => {
 			</div>
 
 			<Button
-				className='block mt-8 text-center'
+				className='my-8'
 				onClick={() => window.history.back()}
 			>
 				&larr; Back to Pokemons

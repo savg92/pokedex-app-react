@@ -2,7 +2,7 @@ import { getPokemons } from '@/services/pokemonApi';
 
 import { useQuery } from 'react-query';
 import { usePagination } from '@mantine/hooks';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import { Pokemon } from '@/types';
@@ -18,8 +18,7 @@ const Pokemons = () => {
 	);
 
 	useEffect(() => {
-		document.title =
-			'Pokedéx'
+		document.title = 'Pokedéx';
 	}, [data]);
 
 	const itemsPerPage = 10;
@@ -56,8 +55,42 @@ const Pokemons = () => {
 		},
 	});
 
+	const [searchTerm, setSearchTerm] = useState('');
+	const handleSubmit = (
+		e: React.FormEvent,
+		navigate: (path: string) => void,
+		searchTerm: string
+	) => {
+		e.preventDefault();
+		navigate(`/pokemon/${searchTerm}`);
+	};
+
 	return (
 		<>
+			<section>
+				<Form
+					onSubmit={(e) => handleSubmit(e, navigate, searchTerm)}
+					className='flex justify-center gap-4 p-4'
+				>
+					<input
+						type='text'
+						placeholder='Search by name or id'
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
+						className='bg-gray-200 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white'
+					/>
+					<button
+						type='submit'
+						className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
+							searchTerm.length === 0
+								? 'cursor-not-allowed bg-gray-300 hover:bg-gray-300'
+								: ''
+						}`}
+					>
+						Search
+					</button>
+				</Form>
+			</section>
 			<div className='w-5/6 m-auto p-4 flex flex-wrap justify-center gap-4'>
 				{isLoading ? (
 					<CardPokemon
@@ -84,16 +117,19 @@ const Pokemons = () => {
 					))
 				)}
 			</div>
-
-			<PaginationComponent
-				first={pagination.first}
-				previous={pagination.previous}
-				next={pagination.next}
-				last={pagination.last}
-				range={pagination.range}
-				active={pagination.active}
-				setPage={pagination.setPage}
-			/>
+			<div
+			// className='flex justify-center items-center mt-8 gap-4 box-border px-12'
+			>
+				<PaginationComponent
+					first={pagination.first}
+					previous={pagination.previous}
+					next={pagination.next}
+					last={pagination.last}
+					range={pagination.range}
+					active={pagination.active}
+					setPage={pagination.setPage}
+				/>
+			</div>
 		</>
 	);
 };

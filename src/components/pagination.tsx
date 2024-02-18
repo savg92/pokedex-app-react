@@ -34,6 +34,11 @@ const PaginationComponent = ({
 					<PaginationFirst
 						onClick={first}
 						href={`#search=${active}`}
+						className={`${
+							active === 1
+								? 'cursor-not-allowed hover:bg-gray-300 text-gray-500'
+								: ''
+						}`}
 					>
 						&lt;&lt;
 					</PaginationFirst>
@@ -42,6 +47,11 @@ const PaginationComponent = ({
 					<PaginationPrevious
 						href={`#search=${active}`}
 						onClick={previous}
+						className={`${
+							active === 1
+								? 'cursor-not-allowed hover:bg-gray-300 text-gray-500'
+								: ''
+						}`}
 					/>
 				</PaginationItem>
 				{range.map((page: number | 'dots', index: number) =>
@@ -61,18 +71,28 @@ const PaginationComponent = ({
 						</PaginationItem>
 					)
 				)}
-				<PaginationItem>
-					<PaginationNext
-						href={`#search=${active}`}
-						onClick={next}
-					/>
-				</PaginationItem>
-				<PaginationItem>
-					<PaginationLast
-						href={`#search=${active}`}
-						onClick={last}
-					/>
-				</PaginationItem>
+						<PaginationItem>
+							<PaginationNext
+								href={`#search=${active}`}
+								onClick={next}
+								className={`${
+									active === Number(range[range.length - 1])
+										? 'cursor-not-allowed hover:bg-gray-300 text-gray-500'
+										: ''
+								}`}
+							/>
+						</PaginationItem>
+						<PaginationItem>
+							<PaginationLast
+								href={`#search=${active}`}
+								onClick={last}
+								className={`${
+									active === Number(range[range.length - 1])
+										? 'cursor-not-allowed hover:bg-gray-300 text-gray-500'
+										: ''
+								}`}
+							/>
+						</PaginationItem>
 			</PaginationContent>
 		</Pagination>
 	);
