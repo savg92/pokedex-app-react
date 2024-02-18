@@ -36,7 +36,7 @@ const PaginationComponent = ({
 						href={`#search=${active}`}
 						className={`${
 							active === 1
-								? 'cursor-not-allowed hover:bg-gray-300 text-gray-500'
+								? 'cursor-not-allowed hover:bg-gray-300 text-gray-400'
 								: ''
 						}`}
 					>
@@ -49,7 +49,7 @@ const PaginationComponent = ({
 						onClick={previous}
 						className={`${
 							active === 1
-								? 'cursor-not-allowed hover:bg-gray-300 text-gray-500'
+								? 'cursor-not-allowed hover:bg-gray-300 text-gray-400'
 								: ''
 						}`}
 					/>
@@ -77,7 +77,7 @@ const PaginationComponent = ({
 								onClick={next}
 								className={`${
 									active === Number(range[range.length - 1])
-										? 'cursor-not-allowed hover:bg-gray-300 text-gray-500'
+										? 'cursor-not-allowed hover:bg-gray-300 text-gray-400'
 										: ''
 								}`}
 							/>
@@ -88,7 +88,7 @@ const PaginationComponent = ({
 								onClick={last}
 								className={`${
 									active === Number(range[range.length - 1])
-										? 'cursor-not-allowed hover:bg-gray-300 text-gray-500'
+										? 'cursor-not-allowed hover:bg-gray-300 text-gray-400'
 										: ''
 								}`}
 							/>
