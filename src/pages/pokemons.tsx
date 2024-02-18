@@ -1,22 +1,14 @@
 import { getPokemons } from '@/services/pokemonApi';
+
 import { useQuery } from 'react-query';
 import { usePagination } from '@mantine/hooks';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+import { Pokemon } from '@/types';
 
 import CardPokemon from '../components/cardPokemon';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Pokemon } from '@/types';
-import {
-	Pagination,
-	PaginationContent,
-	PaginationEllipsis,
-	PaginationFirst,
-	PaginationItem,
-	PaginationLast,
-	PaginationLink,
-	PaginationNext,
-	PaginationPrevious,
-} from '@/components/ui/pagination';
-import { useEffect, useState } from 'react';
+import PaginationComponent from '@/components/pagination';
 
 const Pokemons = () => {
 	const location = useLocation();
@@ -88,53 +80,15 @@ const Pokemons = () => {
 				)}
 			</div>
 
-			<Pagination>
-				<PaginationContent>
-					<PaginationItem>
-						<PaginationFirst
-							onClick={pagination.first}
-							href={`#search=${pagination.active}`}
-						>
-							&lt;&lt;
-						</PaginationFirst>
-					</PaginationItem>
-					<PaginationItem>
-						<PaginationPrevious
-							href={`#search=${pagination.active}`}
-							onClick={pagination.previous}
-						/>
-					</PaginationItem>
-					{pagination.range.map((page: number | 'dots', index: number) =>
-						page === 'dots' ? (
-							<PaginationItem key={index}>
-								<PaginationEllipsis />
-							</PaginationItem>
-						) : (
-							<PaginationItem key={index}>
-								<PaginationLink
-									href={`#search=${page}`}
-									onClick={() => pagination.setPage(page)}
-									isActive={pagination.active === page}
-								>
-									{page}
-								</PaginationLink>
-							</PaginationItem>
-						)
-					)}
-					<PaginationItem>
-						<PaginationNext
-							href={`#search=${pagination.active}`}
-							onClick={pagination.next}
-						/>
-					</PaginationItem>
-					<PaginationItem>
-						<PaginationLast
-							href={`#search=${pagination.active}`}
-							onClick={pagination.last}
-						/>
-					</PaginationItem>
-				</PaginationContent>
-			</Pagination>
+			<PaginationComponent
+				first={pagination.first}
+				previous={pagination.previous}
+				next={pagination.next}
+				last={pagination.last}
+				range={pagination.range}
+				active={pagination.active}
+				setPage={pagination.setPage}
+			/>
 		</>
 	);
 };
