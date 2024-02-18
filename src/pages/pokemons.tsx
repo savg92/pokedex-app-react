@@ -21,10 +21,12 @@ import { useEffect, useState } from 'react';
 const Pokemons = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
-	const { data, isLoading, isError } = useQuery('pokemons', getPokemons);
+	const { data, isLoading, isError } = useQuery('pokemons', () =>
+		getPokemons(151, 0)
+	);
 
 	const itemsPerPage = 20;
-	const total =  (data) ? Math.ceil(data.length / itemsPerPage) : 0;
+	const total = data ? Math.ceil(data.length / itemsPerPage) : 0;
 
 	const searchParams = new URLSearchParams(location.search);
 	const pageParam = searchParams.get('page');
