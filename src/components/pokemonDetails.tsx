@@ -1,12 +1,7 @@
 import { getPokemon } from '@/services/pokemonApi';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import {
-	Card,
-	CardContent,
-	CardHeader,
-	CardTitle,
-} from './ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Car } from 'lucide-react';
 import { useEffect, useMemo } from 'react';
 import { Button } from './ui/button';
@@ -22,7 +17,10 @@ const PokemonDetails = () => {
 		queryFn: () => getPokemon(params.name as string),
 	});
 
-	const title = useMemo(() => `Pokemon - ${data?.name[0].toUpperCase() + data?.name.slice(1)}`, [data]);
+	const title = useMemo(
+		() => `Pokemon - ${data?.name[0].toUpperCase() + data?.name.slice(1)}`,
+		[data]
+	);
 
 	useEffect(() => {
 		document.title = title || 'Pokemon';

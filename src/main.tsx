@@ -8,6 +8,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Pokemons from './pages/pokemons.tsx';
 import PokemonDetails from './components/pokemonDetails.tsx';
 import { Button } from './components/ui/button.tsx';
+import Favorites from './pages/favorites.tsx';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
 				path: '/',
 				element: <Pokemons />,
 			},
+			{
+				path: '/favorites',
+				element: <Favorites />,
+			}
 		],
 		errorElement: <>
 			<h1>404</h1>
