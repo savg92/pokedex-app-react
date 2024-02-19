@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Pokemons from './pages/pokemons.tsx';
 import PokemonDetails from './components/pokemonDetails.tsx';
+import { Button } from './components/ui/button.tsx';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
 				element: <Pokemons />,
 			},
 		],
+		errorElement: <>
+			<h1>404</h1>
+			<p>Not found</p>
+			<Button  onClick={() => router.navigate('/')}>Go to home</Button>
+		</>
 	},
 ]);
 
