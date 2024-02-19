@@ -31,7 +31,7 @@ npm run dev
 bun dev
 ```
 
-4. Open the app in your browser at `http://localhost:3000`
+4. Open the app in your browser at `http://localhost:5173`
 
 ## Technologies
 
