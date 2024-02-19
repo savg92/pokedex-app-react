@@ -44,6 +44,7 @@ bun dev
 - [TailwindCSS](https://tailwindcss.com/)
 - [Shadcn/ui](https://ui.shadcn.com/)
 - [PokeAPI](https://pokeapi.co/)
+- [Mantine Hooks](https://mantine.dev/)
 
 
 ## License
