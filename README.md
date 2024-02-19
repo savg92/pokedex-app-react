@@ -36,14 +36,14 @@ bun dev
 ## Technologies
 
 - [Node.js](https://nodejs.org/en/)
+- [Vite](https://vitejs.dev/)
 - [React](https://reactjs.org/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [PokeAPI](https://pokeapi.co/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Shadcn/ui](https://ui.shadcn.com/)
 - [React Dom](https://reactrouter.com/web/guides/quick-start)
 - [React Query](https://react-query.tanstack.com/)
-- [Vite](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Shadcn/ui](https://ui.shadcn.com/)
+- [PokeAPI](https://pokeapi.co/)
 
 
 ## License
