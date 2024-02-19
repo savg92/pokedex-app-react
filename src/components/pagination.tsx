@@ -33,7 +33,6 @@ const PaginationComponent = ({
 				<PaginationItem>
 					<PaginationFirst
 						onClick={first}
-						href={`#search=${active}`}
 						className={`${
 							active === 1
 								? 'cursor-not-allowed hover:bg-gray-300 text-gray-400'
@@ -45,7 +44,6 @@ const PaginationComponent = ({
 				</PaginationItem>
 				<PaginationItem>
 					<PaginationPrevious
-						href={`#search=${active}`}
 						onClick={previous}
 						className={`${
 							active === 1
@@ -62,7 +60,6 @@ const PaginationComponent = ({
 					) : (
 						<PaginationItem key={index}>
 							<PaginationLink
-								href={`#search=${page}`}
 								onClick={() => setPage(page)}
 								isActive={active === page}
 							>
@@ -73,7 +70,6 @@ const PaginationComponent = ({
 				)}
 						<PaginationItem>
 							<PaginationNext
-								href={`#search=${active}`}
 								onClick={next}
 								className={`${
 									active === Number(range[range.length - 1])
@@ -84,7 +80,6 @@ const PaginationComponent = ({
 						</PaginationItem>
 						<PaginationItem>
 							<PaginationLast
-								href={`#search=${active}`}
 								onClick={last}
 								className={`${
 									active === Number(range[range.length - 1])

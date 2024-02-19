@@ -1,30 +1,55 @@
-# React + TypeScript + Vite
+### Pokedex - Remix
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple pokedex app that uses the [PokeAPI](https://pokeapi.co/) to display information about different pokemons. The app is built using Remix and TailwindCSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search for pokemons by name
+- View detailed information about a pokemon
+- View a list of all pokemons with pagination (original 151 pokemons, 10 per page; in case you want to see all pokemons, you can change the limit in the `getPokemons` function in `src/pages/pokemons.tsx`)
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository
+2. Install the dependencies
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+```bash
+bun install
+```
+
+3. Start the development server
+
+```bash
+npm run dev
+```
+
+```bash
+bun dev
+```
+
+4. Open the app in your browser at `http://localhost:3000`
+
+## Technologies
+
+- [Node.js](https://nodejs.org/en/)
+- [React](https://reactjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [PokeAPI](https://pokeapi.co/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Shadcn/ui](https://ui.shadcn.com/)
+- [React Dom](https://reactrouter.com/web/guides/quick-start)
+- [React Query](https://react-query.tanstack.com/)
+- [Vite](https://vitejs.dev/)
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://pokedex-app-remix.vercel.app/)
