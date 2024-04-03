@@ -1,6 +1,6 @@
 ### Pokedex - React
 
-This is a simple pokedex app that uses the [PokeAPI](https://pokeapi.co/) to display information about different pokemons. The app is built using Remix and TailwindCSS.
+This is a simple pokedex app that uses the [PokeAPI](https://pokeapi.co/) to display information about different pokemons. The app is built using React and TailwindCSS.
 
 ## Features
 
